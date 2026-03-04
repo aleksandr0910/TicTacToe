@@ -27,9 +27,7 @@ class Hoved{
                 System.out.println();
                 System.out.println(" Spiller 1 sin tur! velg tall: ");
                 System.out.print("Rad: ");
-                if(markertX.size() < 4){
-                    spillet[sc.nextInt()].grid[sc.nextInt()] = en.settMarkering();
-                }
+                spillet[sc.nextInt()].grid[sc.nextInt()] = en.settMarkering();
                 
                 to.tur = true;
                 en.tur = false;
@@ -37,31 +35,38 @@ class Hoved{
             } else if(to.hentTur()){
                 System.out.println();
                 System.out.print(" Spiller 2 sin tur! velg tall: ");
-                if(markertO.size() < 4){
-                    spillet[sc.nextInt()].grid[sc.nextInt()] = to.settMarkering();
-                }
+                spillet[sc.nextInt()].grid[sc.nextInt()] = to.settMarkering();
                 en.tur = true;
                 to.tur = false;
                 
             }
             for(Spill s: spillet){
                 System.out.println(s.grid);
+                char nåværende;
                 for(int i = 0; i < s.grid.length; i++){
-                    char nåværende = s.grid[i];
+                    nåværende = s.grid[i];
                     if(nåværende == en.merke){
                         teller1 ++;
                         markertX.add(en.merke);
+                        if(s.grid[0] == en.merke && s.grid[1] == en.merke && s.grid[2] == en.merke){
+                            en.vant();
+                        }
+                        
                     } else if( nåværende == to.merke){
                         teller2++;
                         markertO.add(to.merke);
+                        if(s.grid[0] == to.merke && s.grid[1] == to.merke && s.grid[2] == to.merke){
+                            to.vant();
+                        }
                     }
-                }
                     
                 }
-                
+                       
+                }
             
             }
-            
+            markertX.clear();
+            markertO.clear();
             }
         }
         
